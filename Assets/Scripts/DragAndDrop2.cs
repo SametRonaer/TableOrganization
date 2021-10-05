@@ -12,6 +12,10 @@ public class DragAndDrop2 : MonoBehaviour
     GameObject table;
     [SerializeField]
     GameObject puttedPlate;
+    [SerializeField]
+    GameObject canvas;
+
+    GameObject initialParentObject;
 
     GameObject newPlate;
     float panelHeightRatio;
@@ -37,6 +41,7 @@ public class DragAndDrop2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialParentObject = gameObject.transform.parent.gameObject;
         plateInitialPosition = GetComponent<RectTransform>().position;
         panelHeightRatio = panel.GetComponent<RectTransform>().localScale.y;
         panelHeight = screenHeight * panelHeightRatio;
@@ -55,6 +60,7 @@ public class DragAndDrop2 : MonoBehaviour
 
     public void DragObjects()
     {
+        transform.parent = canvas.transform;
         GetComponent<Transform>().position = Input.mousePosition;
         //print(Input.mousePosition);
         if(Input.mousePosition.y > (screenHeight- panelHeight))
@@ -105,6 +111,7 @@ public class DragAndDrop2 : MonoBehaviour
            
         
         }
+        transform.parent = initialParentObject.transform;
         GetComponent<RectTransform>().position = plateInitialPosition;
     }
 
@@ -134,7 +141,8 @@ public class DragAndDrop2 : MonoBehaviour
         float newZ = getNewZCoordinate(normalizedX);
         if (otherPlate != null)
         {
-           tableY += 0.3f;
+           tableY += 5f;
+            print("other object available");
            // newX = otherPlate.GetComponent<Transform>().position.x;
             //newZ = otherPlate.GetComponent<Transform>().position.z;
         }
