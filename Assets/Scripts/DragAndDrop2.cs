@@ -62,15 +62,6 @@ public class DragAndDrop2 : MonoBehaviour
     {
         transform.parent = canvas.transform;
         GetComponent<Transform>().position = Input.mousePosition;
-        //print(Input.mousePosition);
-        if(Input.mousePosition.y > (screenHeight- panelHeight))
-        {
-            //print(Input.mousePosition.y);
-            
-            //}
-
-
-        }
 
     }
 
@@ -78,8 +69,6 @@ public class DragAndDrop2 : MonoBehaviour
     {
         if (GetComponent<DragAndDrop2>().isActiveAndEnabled)
         {
-            //  print("trigger enter" + collision.gameObject.);
-            //otherPlate = collision.
             print("trigger exit" + collision.name);
             print(collision.gameObject.GetComponent<DragAndDrop2>().get3DPlate().name);
             plateUp = true;
