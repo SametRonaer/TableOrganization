@@ -10,7 +10,8 @@ public class DragAndDrop2 : MonoBehaviour
     GameObject plate;
     [SerializeField]
     GameObject table;
-
+    [SerializeField]
+    GameObject puttedPlate;
     float panelHeightRatio;
     float panelHeight;
     float screenHeight = 1600;
@@ -40,11 +41,7 @@ public class DragAndDrop2 : MonoBehaviour
         plate.GetComponent<Transform>().position = new Vector3(startX, tableY, startZ);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void DragObjects()
     {
@@ -63,7 +60,12 @@ public class DragAndDrop2 : MonoBehaviour
 
     public void EndDrag()
     {
+        if (Input.mousePosition.y > (screenHeight - panelHeight))
+        {
         LocatePlates(Input.mousePosition);
+         GameObject newPlateImage =  Instantiate(this.gameObject, transform.position, transform.rotation);
+            newPlateImage.GetComponent<RectTransform>().parent = GetComponent<RectTransform>().parent;
+        }
         GetComponent<RectTransform>().position = plateInitialPosition;
     }
 
@@ -87,10 +89,10 @@ public class DragAndDrop2 : MonoBehaviour
         print("NormalizedX: " + normalizedX + " NormalizedY: " + normalizedY);
 
         float tableY = table.GetComponent<Transform>().position.y;
-        float newX = getNewXCoordinate(normalizedX);
-        float newZ = getNewZCoordinate(normalizedY);
+        float newX = getNewXCoordinate(normalizedY);
+        float newZ = getNewZCoordinate(normalizedX);
         //plate.GetComponent<Transform>().position = new Vector3(newX, tableY, newZ);
-        Instantiate(plate, new Vector3(newX, tableY, newZ), Quaternion.identity);
+        Instantiate(plate, new Vector3(newX, tableY, newZ), plate.GetComponent<Transform>().rotation);
         print("Plates located");
     }
 
