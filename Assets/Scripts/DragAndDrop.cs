@@ -8,6 +8,8 @@ public class DragAndDrop : MonoBehaviour
     GameObject table;
     [SerializeField]
     GameObject plate;
+    [SerializeField]
+    GameObject panel;
     //Vector3 mousePosition;
     float screenHeight = 1600;
     float screenWidth = 900;
@@ -20,8 +22,10 @@ public class DragAndDrop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tableHeight = table.transform.localScale.z;
-        tableWidth = table.transform.localScale.x;
+      //  screenHeight = panel.GetComponent<Transform>().localScale.
+        
+        //tableHeight = table.transform.localScale.z;
+        //tableWidth = table.transform.localScale.x;
 
         startX = table.transform.position.x - (tableWidth/2);
         startZ = table.transform.position.z - (tableHeight/2);
@@ -47,8 +51,8 @@ public class DragAndDrop : MonoBehaviour
         float normalizedX = Input.mousePosition.x / screenWidth;
         float normalizedY = Input.mousePosition.y / screenHeight;
 
-        float plateNewZ = normalizedY * tableHeight;
-        float plateNewX = normalizedX * tableWidth;
+        //float plateNewZ = normalizedY * tableHeight;
+        //float plateNewX = normalizedX * tableWidth;
         print("NormalizedX: " + normalizedX + " NormalizedY: " + normalizedY);
 
         float tableY = table.GetComponent<Transform>().position.y;
