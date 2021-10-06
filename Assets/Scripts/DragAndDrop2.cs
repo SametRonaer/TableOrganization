@@ -17,7 +17,7 @@ public class DragAndDrop2 : MonoBehaviour
 
     GameObject initialParentObject;
 
-    GameObject newPlate;
+    public GameObject newPlate;
     float panelHeightRatio;
     float panelHeight;
     float screenHeight = 1600;
@@ -27,16 +27,15 @@ public class DragAndDrop2 : MonoBehaviour
     float startZ;
     float tableHeight;
     float tableWidth;
+    float plateHeight = 0.06f;
 
     bool plateUp = false;
     GameObject otherPlate;
+    GameObject collidedImage;
 
     Vector2 plateInitialPosition;
 
-    public GameObject get3DPlate()
-    {
-        return newPlate;
-    }
+   
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +52,6 @@ public class DragAndDrop2 : MonoBehaviour
         startX = table.transform.position.x - (tableWidth / 2);
         startZ = table.transform.position.z - (tableHeight / 2);
         float tableY = table.GetComponent<Transform>().position.y;
-       // plate.GetComponent<Transform>().position = new Vector3(startX, tableY, startZ);
     }
 
     
@@ -69,21 +67,23 @@ public class DragAndDrop2 : MonoBehaviour
     {
         if (GetComponent<DragAndDrop2>().isActiveAndEnabled)
         {
+            collidedImage = collision.gameObject;
             print("trigger exit" + collision.name);
-            print(collision.gameObject.GetComponent<DragAndDrop2>().get3DPlate().name);
-            plateUp = true;
-            otherPlate = collision.gameObject;
+            print(collision.gameObject.GetComponent<DragAndDrop2>().newPlate.name);
+            otherPlate = collision.gameObject.GetComponent<DragAndDrop2>().newPlate;
         }
     }
 
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (GetComponent<DragAndDrop2>().isActiveAndEnabled)
-        {
-            //print("trigger exit" + collision.name);
-        plateUp = false;
-        }
+        otherPlate = null;
+        collidedImage = null;
+    }
+
+    public void BeginDrag()
+    {
+        plateInitialPosition = transform.position;
     }
 
     public void EndDrag()
@@ -95,15 +95,41 @@ public class DragAndDrop2 : MonoBehaviour
         {
         LocatePlates(Input.mousePosition);
          newPlateImage =  Instantiate(this.gameObject, transform.position, transform.rotation);
-            newPlateImage.GetComponent<RectTransform>().parent = GetComponent<RectTransform>().parent.gameObject.transform.GetChild(0);
-        newPlateImage.GetComponent<DragAndDrop2>().enabled = false;
-           
+         newPlateImage.GetComponent<RectTransform>().parent = GetComponent<RectTransform>().parent.gameObject.transform.GetChild(0);
+         newPlateImage.GetComponent<DragAndDrop2>().enabled = false;
+            if(collidedImage != null)
+            {
+            collidedImage.GetComponent<CapsuleCollider2D>().enabled = false;
+            }
         
         }
         transform.parent = initialParentObject.transform;
         GetComponent<RectTransform>().position = plateInitialPosition;
     }
 
+    public void LocatePlates(Vector2 location)
+    {
+
+
+        print(location);
+        float normalizedX = location.x / screenWidth;
+        float normalizedY = GetNormalizedY(location);
+
+        print("NormalizedX: " + normalizedX + " NormalizedY: " + normalizedY);
+
+        float tableY = table.GetComponent<Transform>().position.y;
+        float newX = getNewXCoordinate(normalizedY);
+        float newZ = getNewZCoordinate(normalizedX);
+        if (otherPlate != null)
+        {
+            newX = otherPlate.transform.position.x;
+            newZ = otherPlate.transform.position.z;
+            tableY += plateHeight;
+            print("other object available");
+        }
+        newPlate = Instantiate(plate, new Vector3(newX, tableY, newZ), plate.GetComponent<Transform>().rotation);
+        print("Plates located");
+    }
 
     float GetNormalizedY(Vector2 location)
     {
@@ -118,31 +144,7 @@ public class DragAndDrop2 : MonoBehaviour
 
 
 
-    public void LocatePlates(Vector2 location)
-    {
-
-     
-        print(location);
-        float normalizedX = location.x / screenWidth;
-        float normalizedY = GetNormalizedY(location);
-
-        print("NormalizedX: " + normalizedX + " NormalizedY: " + normalizedY);
-
-        float tableY = table.GetComponent<Transform>().position.y;
-        float newX = getNewXCoordinate(normalizedY);
-        float newZ = getNewZCoordinate(normalizedX);
-        if (otherPlate != null)
-        {
-           tableY += 5f;
-            print("other object available");
-           // newX = otherPlate.GetComponent<Transform>().position.x;
-            //newZ = otherPlate.GetComponent<Transform>().position.z;
-        }
-        //plate.GetComponent<Transform>().position = new Vector3(newX, tableY, newZ);
-       newPlate = Instantiate(plate, new Vector3(newX, tableY, newZ), plate.GetComponent<Transform>().rotation);
-       // newPlate.GetComponent<DragAndDrop2>().enabled = false;
-        print("Plates located");
-    }
+  
 
     float getNewXCoordinate(float normalizedX)
     {
