@@ -57,8 +57,9 @@
     <Compile Include="Assets\Scripts\WebDemo.cs" />
     <Compile Include="Assets\Scripts\DragAndDrop2.cs" />
     <Compile Include="Assets\Scripts\PlateDetector.cs" />
-    <Compile Include="Assets\Scripts\DragAndDrop.cs" />
     <Compile Include="Assets\Scripts\StaticScreens\SplashScreen.cs" />
+    <Compile Include="Assets\Scripts\DragAndDrop.cs" />
+    <Compile Include="Assets\Scripts\BottomNavigationActions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
