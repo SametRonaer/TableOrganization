@@ -100,6 +100,11 @@ public class DragAndDrop2 : MonoBehaviour
             if(collidedImage != null)
             {
             collidedImage.GetComponent<CapsuleCollider2D>().enabled = false;
+                //print("Collided image mesh: "+ collidedImage.GetComponent<DragAndDrop2>().newPlate);
+            }
+            else
+            {
+                print("There is no collided object");
             }
         
         }
