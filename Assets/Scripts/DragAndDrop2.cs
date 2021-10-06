@@ -108,7 +108,10 @@ public class DragAndDrop2 : MonoBehaviour
     float GetNormalizedY(Vector2 location)
     {
         float outOfPanelFieldHeight = screenHeight - panelHeight;
-        float normalizedY = (location.y - outOfPanelFieldHeight )/ panelHeight;
+        float normalizedY =  ((location.y - outOfPanelFieldHeight )/ panelHeight);
+        print("Notmalization");
+        normalizedY = normalizedY -  1;
+        normalizedY = Mathf.Abs(normalizedY);
         print(normalizedY);
         return normalizedY;
     }
