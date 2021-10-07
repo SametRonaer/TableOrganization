@@ -53,13 +53,20 @@
     <UnityVersion>2020.3.19f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BottomNavigationActions.cs" />
     <Compile Include="Assets\Scripts\PutPlates.cs" />
     <Compile Include="Assets\Scripts\WebDemo.cs" />
     <Compile Include="Assets\Scripts\DragAndDrop2.cs" />
     <Compile Include="Assets\Scripts\PlateDetector.cs" />
     <Compile Include="Assets\Scripts\StaticScreens\SplashScreen.cs" />
     <Compile Include="Assets\Scripts\DragAndDrop.cs" />
-    <Compile Include="Assets\Scripts\BottomNavigationActions.cs" />
+    <Compile Include="Assets\Scripts\Services\CartSevice.cs" />
+    <Compile Include="Assets\Scripts\ScreenManagers\CartScreenManager.cs" />
+    <Compile Include="Assets\Scripts\Services\CollectionService.cs" />
+    <Compile Include="Assets\Scripts\Models\ImageModel.cs" />
+    <Compile Include="Assets\Scripts\Models\CollectionModel.cs" />
+    <Compile Include="Assets\Scripts\Models\ProductModel.cs" />
+    <Compile Include="Assets\Scripts\ScreenManagers\CollectionScreenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

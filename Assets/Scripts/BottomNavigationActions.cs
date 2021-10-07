@@ -9,18 +9,9 @@ public class BottomNavigationActions : MonoBehaviour
     Sprite activeIcon;
     [SerializeField]
     Sprite passiveIcon;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    [SerializeField]
+    GameObject iconScreen;
+  
     public void Pressed()
     {
         int childCount = transform.parent.childCount;
@@ -28,27 +19,36 @@ public class BottomNavigationActions : MonoBehaviour
         {
             if(gameObject.tag != transform.parent.GetChild(i).gameObject.tag)
             {
-            print(transform.parent.GetChild(i).gameObject.tag);
-            transform.parent.GetChild(i).gameObject.GetComponent<BottomNavigationActions>().setPassive();
+            transform.parent.GetChild(i).gameObject.GetComponent<BottomNavigationActions>().SetPassive();
+            transform.parent.GetChild(i).gameObject.GetComponent<BottomNavigationActions>().CloseScreen();
             }
             else
             {
-                print(gameObject.tag + " is active");
-                setActive();
+                SetActive();
+                OpenScreen();
             }
         }
-       // print(gameObject.tag);
     }
 
-    public void setPassive()
+    public void SetPassive()
     {
         transform.GetChild(0).gameObject.GetComponent<Image>().sprite = passiveIcon;
 
     }
 
-     void setActive()
+     void SetActive()
     {
         transform.GetChild(0).gameObject.GetComponent<Image>().sprite = activeIcon;
 
+    }
+
+    public void CloseScreen()
+    {
+        iconScreen.SetActive(false);
+    }
+
+    void OpenScreen()
+    {
+        iconScreen.SetActive(true);
     }
 }
