@@ -1,3 +1,4 @@
+//using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,8 @@ public class CollectionService : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         StartCoroutine(GetCarouselImages());
     }
 
@@ -28,30 +31,38 @@ public class CollectionService : MonoBehaviour
         }
         else
         {
-            Debug.Log("Form upload complete!");
-           // Debug.Log(www.downloadHandler.data);
-            byte[] results = www.downloadHandler.data;
-
-            StringBuilder sb = new StringBuilder();
-            foreach (System.Collections.Generic.KeyValuePair<string, string> dict in www.GetResponseHeaders())
-            {
-                sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
-            }
-            // print("Headers "+sb);
-            // Debug.Log(www.downloadHandler.text);
-            //ImageModel imageModel = JsonUtility.FromJson<ImageModel>(www.downloadHandler.text);
-            //print(imageModel.imagePortrait);
+            Debug.Log("complete!");
+          //  byte[] results = www.downloadHandler.data;
+          //  StringBuilder sb = new StringBuilder();
+          //  foreach (System.Collections.Generic.KeyValuePair<string, string> dict in www.GetResponseHeaders())
+          //  {
+           //     sb.Append(dict.Key).Append(": \t[").Append(dict.Value).Append("]\n");
+          //  }
             string responseString = www.downloadHandler.text;
             print(responseString);
-           // List<User> userList = JsonConvert.DeserializeObject<List<ImageModel>>(json);
-           // JsonCon
-           // print(myObject);
-            
-
-            //Overwrite the values in the existing class instance "playerInstance". Less memory Allocation
-            //JsonUtility.FromJsonOverwrite(jsonString, playerInstance);
-            //Debug.Log(playerInstance.playerLoc);
+            //var images = JsonConvert.DeserializeObject<List<ImageModel>>(responseString);
         }
+    }
+
+
+    public void GetCollectionProducts(string id)
+    {
+
+        //productModel = new ProductModel();
+        //productModel.id = "tabak02";
+        //productModel.name = "Ataturk";
+        //productModel.category = "Duz Tabak";
+        //productModel.imageUrl = "www.tabak.com";
+        //productModel.price = 17.40f;
+
+        List<ProductModel> collectionProducts = new List<ProductModel>();
+       // collectionProducts.Add(new ProductModel());
+
+        //List<Part> parts = new List<Part>();
+
+        //// Add parts to the list.
+        //parts.Add(new Part() { PartName = "crank arm", PartId = 1234 });
+        //parts.Add(new Part() { PartName = "chain ring", PartId = 1334 });
     }
 
 }

@@ -5,15 +5,21 @@ using UnityEngine;
 public class CartSevice : MonoBehaviour
 {
     float totalPrice = 112.6f;
-
+    List<ProductModel> productList = new List<ProductModel>();
     public float GetTotalPrice()
     {
         return totalPrice;
     }
 
-    public void AddProductToCart(int productId)
+    public void AddProductToCart(ProductModel product)
     {
-        totalPrice += 5.5f;
+        productList.Add(product);
+        totalPrice += product.price;
+        print(totalPrice);
+        foreach (ProductModel productItem in productList)
+        {
+            print(productItem.name);
+        }
         return;
     }
 }

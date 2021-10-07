@@ -9,6 +9,9 @@ TagManager:
   - MyTables
   - MyAccount
   - Others
+  - All
+  - Plate
+  - CurvePlate
   layers:
   - Default
   - TransparentFX
