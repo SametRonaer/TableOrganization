@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class ListTileManager : MonoBehaviour
 {
-    [SerializeField]Text productAmountText;
-    [SerializeField]Text productColorText;
-    [SerializeField]Text productNameText;
-    [SerializeField]Text productPriceText;
-    [SerializeField]Text selectedQuantityText;
+    public Text productAmountText;
+    public Text productColorText;
+    public Text productNameText;
+    public Text productPriceText;
+    public Text selectedQuantityText;
 
     float productPrice = 17.5f;
     int productQuantity = 1;
@@ -23,7 +23,7 @@ public class ListTileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetProductConfiguration();
+       // SetProductConfiguration();
     }
 
     private void SetProductConfiguration()
@@ -54,5 +54,22 @@ public class ListTileManager : MonoBehaviour
     public void DeleteProduct()
     {
         print("Deleted");
+    }
+
+    public void SetProductName(string title)
+    {
+        productNameText.text = title;
+        print("Name setted");
+    }
+
+    public void SetProductPrice(float price)
+    {
+        productPriceText.text = price.ToString() + "tl";
+    }
+
+    public void SetProductQuantity(int quantity)
+    {
+        selectedQuantityText.text = quantity.ToString();
+        productQuantity = quantity;
     }
 }

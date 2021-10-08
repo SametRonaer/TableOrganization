@@ -23,8 +23,8 @@ public class CartSevice : MonoBehaviour
         return;
     }
 
-    //public List<CartItemModel> GetProductsInCart()
-    //{
-
-    //}
+    public static List<CartItemModel> GetProductsInCart()
+    {
+        return DummyData.GetCartItemList();
+    }
 }
