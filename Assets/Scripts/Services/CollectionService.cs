@@ -8,7 +8,10 @@ using UnityEngine.Networking;
 public class CollectionService : MonoBehaviour
 {
     string carouselImagesUrl = "http://ceyizinisec-lazarus.production.cmosteknoloji.com/api/CarouselImages";
+    string userInfoUrl = "http://ceyizinisec-lazarus.production.cmosteknoloji.com/api/Account/UserInfo";
+    string addProductUrl = "http://ceyizinisec-lazarus.production.cmosteknoloji.com/api/Account/AddToCart/TEST0003";
     string fakeApi = "https://jsonplaceholder.typicode.com/todos/1";
+    string dummyToken = DummyData.dummyUserToken;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,9 @@ public class CollectionService : MonoBehaviour
     IEnumerator GetCarouselImages()
     {
 
-        UnityWebRequest www = UnityWebRequest.Get(carouselImagesUrl);
+        UnityWebRequest www = UnityWebRequest.Get(userInfoUrl);
+        www.SetRequestHeader("content-type", "application/json");
+        www.SetRequestHeader("authorization", "Bearer "+dummyToken);
         yield return www.SendWebRequest();
 
         if (www.result != UnityWebRequest.Result.Success)

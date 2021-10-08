@@ -25,6 +25,8 @@ public class WebDemo : MonoBehaviour
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {
+            //webRequest.SetRequestHeader("content-type", "application/json");
+            //webRequest.SetRequestHeader("authorization", "Bearer teryry567 ");
             // Request and wait for the desired page.
             yield return webRequest.SendWebRequest();
 
