@@ -37,9 +37,9 @@ public class CartScreenManager : MonoBehaviour
         float tileXCoordinate = firstTile.transform.position.x;
         Vector3 tilePosition = new Vector3(tileXCoordinate, tileYCoordinate, 0);
         GameObject newTile = Instantiate(firstTile,tilePosition, firstTile.transform.rotation);
+        newTile.transform.parent = tileList;
+        //newTile.transform.parent = firstTile.transform.parent;
         newTile.transform.localScale = firstTile.transform.localScale;
-        //newTile.transform.parent = tileList;
-        newTile.transform.parent = firstTile.transform.parent;
         newTile.GetComponent<ListTileManager>().SetProductName(cartItem.productName);
         newTile.GetComponent<ListTileManager>().SetProductQuantity(cartItem.quantity);
         newTile.GetComponent<ListTileManager>().SetProductPrice(cartItem.amount);
