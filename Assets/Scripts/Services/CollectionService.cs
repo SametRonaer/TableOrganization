@@ -45,7 +45,7 @@ public class CollectionService : MonoBehaviour
     }
 
 
-    public void GetCollectionProducts(string id)
+    public List<ProductModel> GetCollectionProducts(string id)
     {
 
         //productModel = new ProductModel();
@@ -55,7 +55,9 @@ public class CollectionService : MonoBehaviour
         //productModel.imageUrl = "www.tabak.com";
         //productModel.price = 17.40f;
 
-        List<ProductModel> collectionProducts = new List<ProductModel>();
+        List<ProductModel> collectionProducts = DummyData.GetProductList();
+        //print("Dummy list: " + DummyData.GetProductList().Count);
+        return collectionProducts;
        // collectionProducts.Add(new ProductModel());
 
         //List<Part> parts = new List<Part>();
