@@ -84,11 +84,12 @@ public class DragAndDrop2 : MonoBehaviour
     public void BeginDrag()
     {
         plateInitialPosition = transform.position;
+        print("Drag happen");
     }
 
     public void EndDrag()
     {
-      
+        print("Drag finished");
 
         GameObject newPlateImage;
         if (Input.mousePosition.y > (screenHeight - panelHeight))

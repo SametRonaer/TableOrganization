@@ -18,7 +18,7 @@ public class CollectionService : MonoBehaviour
     {
 
 
-        StartCoroutine(GetCarouselImages());
+       // StartCoroutine(GetCarouselImages());
     }
 
 

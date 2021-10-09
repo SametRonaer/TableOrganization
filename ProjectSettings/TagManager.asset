@@ -12,6 +12,9 @@ TagManager:
   - All
   - Plate
   - CurvePlate
+  - DeleteField
+  - TableImage
+  - PlateImage
   layers:
   - Default
   - TransparentFX
