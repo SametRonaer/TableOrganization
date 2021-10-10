@@ -8,18 +8,21 @@ public class PlateCollisionManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.name);
+        //print(collision.name);
         if((collision.gameObject.tag == "TableImage"))
         {
        // isInTableField = true;
         SendMessage("LocateInTable");
+        SendMessage("SetPlateInTable", true);
+            print("Table border start at: "+gameObject.transform.position);
         }
 
         if(collision.gameObject.tag == "PlateImage")
         {
             GameObject otherPlateImage = collision.gameObject;
             SendMessage("LocateAboveOtherPlate", otherPlateImage);
-            print(collision.gameObject);
+            SendMessage("SetPlateAboveOtherPlate", otherPlateImage);
+            //print(collision.gameObject);
         }
     }
 
@@ -28,13 +31,17 @@ public class PlateCollisionManager : MonoBehaviour
         if (collision.gameObject.tag == "TableImage")
         {
             SendMessage("LocateOutsideOfTable");
-           // isInTableField = false;
+            SendMessage("SetPlateDoesNotAboveOtherPlate");
+            print("Table end start at: " + gameObject.transform.position);
+            // isInTableField = false;
 
         }
 
         if(collision.gameObject.tag == "PlateImage")
         {
             SendMessage("DontLocateAboveOtherObject");
+            SendMessage("SetPlateAboveOtherPlate", false);
+            //collision.gameObject.GetComponent<SceneConverter2Dto3D>().GetPlateType();
         }
     }
 

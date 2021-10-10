@@ -16,6 +16,7 @@ public class DragAndDropToTableImage : MonoBehaviour
 
     private void Start()
     {
+        print("Scale factor is: "+ canvas.GetComponent<Canvas>().scaleFactor);
         plateInitialPosition = GetComponent<RectTransform>().position;
         if(transform.parent.gameObject != scrollView)
         {
@@ -26,6 +27,7 @@ public class DragAndDropToTableImage : MonoBehaviour
             print("it is first instance");
         }
     }
+
 
     public void BeginDrag()
     { 
@@ -45,6 +47,7 @@ public class DragAndDropToTableImage : MonoBehaviour
     {
         if (isInTableArea)
         {
+            Vector2 platePositionInTable = gameObject.transform.position;
             if (isAboveOtherPlate)
             {
                 print("There is other plate");
@@ -74,12 +77,12 @@ public class DragAndDropToTableImage : MonoBehaviour
                 }
                 else
                 {
-
+                    SendMessage("GetPlatePositionInTable", platePositionInTable);
                 }
             }
 
             isMove = false;
-            
+
         }
         else
         {
@@ -91,10 +94,10 @@ public class DragAndDropToTableImage : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-           // GetComponent<RectTransform>().position = plateInitialPosition;
-           // print("Outside table");
-           // isMove = false;
-           //transform.parent = scrollView.transform;
+            // GetComponent<RectTransform>().position = plateInitialPosition;
+            // print("Outside table");
+            // isMove = false;
+            //transform.parent = scrollView.transform;
         }
     }
 
